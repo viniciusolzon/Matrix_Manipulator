@@ -1,13 +1,13 @@
-// Vinicius Freitas (matricula)
-//Natanel Neto (matricula)
+// Vinicius Freitas     20210026803
+// Natanael Neto         20190038391
 
 typedef struct {
-int *data;
-int n_rows;
-int n_cols;
-int stride_rows;
-int stride_cols;
-int offset;
+    int *data;
+    int n_rows;
+    int n_cols;
+    int stride_rows;
+    int stride_cols;
+    int offset;
 } Matrix;
 
 
