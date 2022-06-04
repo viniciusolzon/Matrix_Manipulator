@@ -6,8 +6,8 @@
 
 int main(){
 
-    int data[6] = {1, 2, 3, 4, 5, 6};
-    Matrix matriz1 = create_matrix(data, 2, 3);
+    int data[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    Matrix matriz1 = create_matrix(data, 3, 3);
     print_matrix(matriz1);
 
     printf("\n");
@@ -39,6 +39,32 @@ int main(){
     printf("Index of min value: %d\n", argmin(matriz1));
 
     printf("Index of max value: %d\n", argmax(matriz1));
+   
+    printf("\n");
+
+    Matrix matriz_add = add(matriz1, matriz3);
+
+    print_matrix(matriz_add);
+    
+    printf("\n");
+
+    Matrix matriz_sub = sub(matriz1, matriz3);
+
+    print_matrix(matriz_sub);
+    
+    printf("\n");
+
+    Matrix matriz_divison = division(matriz1, matriz3);
+
+    print_matrix(matriz_divison);
+    
+    printf("\n");
+
+    Matrix matriz_mul = mul(matriz1, matriz3);
+
+    print_matrix(matriz_mul);
+    
+    printf("\n");
 
     return 0;
 }

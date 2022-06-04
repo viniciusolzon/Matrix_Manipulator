@@ -43,10 +43,10 @@ int argmin(Matrix matrix);
 
 int argmax(Matrix matrix);
 
-// Matrix add(Matrix matrix_1, Matrix matrix_2);
-// Matrix sub(Matrix matrix_1, Matrix matrix_2);
-// Matrix division(Matrix matrix_1, Matrix matrix_2);
-// Matrix mul(Matrix matrix_1, Matrix matrix_2);
+Matrix add(Matrix matrix_1, Matrix matrix_2);
+Matrix sub(Matrix matrix_1, Matrix matrix_2);
+Matrix division(Matrix matrix_1, Matrix matrix_2);
+Matrix mul(Matrix matrix_1, Matrix matrix_2);
 
 
 #endif

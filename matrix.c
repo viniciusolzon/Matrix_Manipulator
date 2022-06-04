@@ -136,7 +136,7 @@ int min(Matrix matrix){
             min_value = matrix.data[i];
         }
     }
-    
+
     return min_value;
 }
 
@@ -174,4 +174,84 @@ int argmax(Matrix matrix){
     }
 
     return max_value;
+}
+
+Matrix add(Matrix matrix_1, Matrix matrix_2){
+    Matrix matriz;
+
+    int *p = malloc(sizeof(int) * matrix_1.n_rows * matrix_1.n_cols);
+    matriz.data = p;
+
+    matriz.n_rows = matrix_1.n_rows;
+    matriz.n_cols = matrix_1.n_cols;
+    matriz.stride_rows = matrix_1.n_cols;
+    matriz.stride_cols = 1;
+    matriz.offset = 0;
+    
+    int size = matrix_1.n_rows * matrix_1.n_cols;
+    for(int i = 0; i < size; i++){
+        matriz.data[i] = matrix_1.data[i] + matrix_2.data[i];
+    }
+
+    return matriz;
+}
+
+Matrix sub(Matrix matrix_1, Matrix matrix_2){
+    Matrix matriz;
+
+    int *p = malloc(sizeof(int) * matrix_1.n_rows * matrix_1.n_cols);
+    matriz.data = p;
+
+    matriz.n_rows = matrix_1.n_rows;
+    matriz.n_cols = matrix_1.n_cols;
+    matriz.stride_rows = matrix_1.n_cols;
+    matriz.stride_cols = 1;
+    matriz.offset = 0;
+    
+    int size = matrix_1.n_rows * matrix_1.n_cols;
+    for(int i = 0; i < size; i++){
+        matriz.data[i] = matrix_1.data[i] - matrix_2.data[i];
+    }
+
+    return matriz;
+}
+
+Matrix division(Matrix matrix_1, Matrix matrix_2){
+    Matrix matriz;
+
+    int *p = malloc(sizeof(int) * matrix_1.n_rows * matrix_1.n_cols);
+    matriz.data = p;
+
+    matriz.n_rows = matrix_1.n_rows;
+    matriz.n_cols = matrix_1.n_cols;
+    matriz.stride_rows = matrix_1.n_cols;
+    matriz.stride_cols = 1;
+    matriz.offset = 0;
+    
+    int size = matrix_1.n_rows * matrix_1.n_cols;
+    for(int i = 0; i < size; i++){
+        matriz.data[i] = matrix_1.data[i] / matrix_2.data[i];
+    }
+
+    return matriz;
+}
+
+Matrix mul(Matrix matrix_1, Matrix matrix_2){
+    Matrix matriz;
+
+    int *p = malloc(sizeof(int) * matrix_1.n_rows * matrix_1.n_cols);
+    matriz.data = p;
+
+    matriz.n_rows = matrix_1.n_rows;
+    matriz.n_cols = matrix_1.n_cols;
+    matriz.stride_rows = matrix_1.n_cols;
+    matriz.stride_cols = 1;
+    matriz.offset = 0;
+    
+    int size = matrix_1.n_rows * matrix_1.n_cols;
+    for(int i = 0; i < size; i++){
+        matriz.data[i] = matrix_1.data[i] * matrix_2.data[i];
+    }
+
+    return matriz;
 }
