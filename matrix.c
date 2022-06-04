@@ -106,10 +106,9 @@ Matrix tile_matrix(Matrix matrix, int reps){
             count++;
         }
     }
-    
+
     return matriz;
 }
-
 
 void print_matrix(Matrix matrix){
     int size = matrix.n_rows * matrix.n_cols;
@@ -127,4 +126,52 @@ void print_matrix(Matrix matrix){
             printf("\n");
         }
     }
+}
+
+int min(Matrix matrix){
+    int size = matrix.n_rows * matrix.n_cols;
+    int min_value = 99999;
+    for(int i = 0; i < size; i++){
+        if (matrix.data[i] < min_value){
+            min_value = matrix.data[i];
+        }
+    }
+    
+    return min_value;
+}
+
+int max(Matrix matrix){
+    int size = matrix.n_rows * matrix.n_cols;
+    int max_value = -99999;
+    for(int i = 0; i < size; i++){
+        if (matrix.data[i] > max_value){
+            max_value = matrix.data[i];
+        }
+    }
+
+    return max_value;
+}
+
+int argmin(Matrix matrix){
+    int size = matrix.n_rows * matrix.n_cols;
+    int min_value = 99999;
+    for(int i = 0; i < size; i++){
+        if (matrix.data[i] < min_value){
+            min_value = i;
+        }
+    }
+
+    return min_value;
+}
+
+int argmax(Matrix matrix){
+    int size = matrix.n_rows * matrix.n_cols;
+    int max_value = -99999;
+    for(int i = 0; i < size; i++){
+        if (matrix.data[i] > max_value){
+            max_value = i;
+        }
+    }
+
+    return max_value;
 }

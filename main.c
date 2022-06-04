@@ -32,5 +32,13 @@ int main(){
 
     printf("\n");
 
+    printf("Min value: %d\n", min(matriz1));
+
+    printf("Max value: %d\n", max(matriz1));
+
+    printf("Index of min value: %d\n", argmin(matriz1));
+
+    printf("Index of max value: %d\n", argmax(matriz1));
+
     return 0;
 }
