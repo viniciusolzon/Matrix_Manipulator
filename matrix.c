@@ -81,6 +81,36 @@ Matrix i_matrix(int n){
     return matriz;
 }
 
+Matrix tile_matrix(Matrix matrix, int reps){
+    Matrix matriz;
+
+    int *p = malloc(sizeof(int) * matrix.n_rows * matrix.n_cols * reps);
+    matriz.data = p;
+
+    matriz.n_rows = matrix.n_rows;
+    matriz.n_cols = matrix.n_cols * reps;
+    matriz.stride_rows = matriz.n_cols;
+    matriz.stride_cols = 1;
+    matriz.offset = 0;
+
+    int size = matriz.n_rows * matriz.n_cols;
+    int count = 0;
+    for(int i = 0; i < size; i++){
+        if(i == size/2){
+            count = 0;
+            matriz.data[i] = matrix.data[count];
+            count++;
+        }
+        else{
+            matriz.data[i] = matrix.data[count];
+            count++;
+        }
+    }
+    
+    return matriz;
+}
+
+
 void print_matrix(Matrix matrix){
     int size = matrix.n_rows * matrix.n_cols;
     int column = 0;
