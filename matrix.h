@@ -3,6 +3,7 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
+
 typedef struct {
     int *data;
     int n_rows;
@@ -18,9 +19,9 @@ Matrix zeros_matrix(int n_rows, int n_cols);
 
 Matrix full_matrix(int n_rows, int n_cols, int value);
 
-// Matrix i_matrix(int n);
+Matrix i_matrix(int n);
 
-// Matrix tile_matrix(Matrix matrix, int reps);
+Matrix tile_matrix(Matrix matrix, int reps);
 
 // int get_element(Matrix matrix, int ri, int ci);
 
