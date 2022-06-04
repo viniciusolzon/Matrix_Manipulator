@@ -35,13 +35,13 @@ void print_matrix(Matrix matrix);
 
 // Matrix slice(Matrix a_matrix, int rs, int re, int cs, int ce);
 
-// int min(Matrix matrix);
+int min(Matrix matrix);
 
-// int max(Matrix matrix);
+int max(Matrix matrix);
 
-// int argmin(Matrix matrix);
+int argmin(Matrix matrix);
 
-// int argmax(Matrix matrix);
+int argmax(Matrix matrix);
 
 // Matrix add(Matrix matrix_1, Matrix matrix_2);
 // Matrix sub(Matrix matrix_1, Matrix matrix_2);
