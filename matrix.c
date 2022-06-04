@@ -52,6 +52,35 @@ Matrix full_matrix(int n_rows, int n_cols, int value){
     return matriz;
 }
 
+Matrix i_matrix(int n){
+    Matrix matriz;
+    matriz.n_rows = n;
+    matriz.n_cols = n;
+    matriz.stride_rows = n;
+    matriz.stride_cols = 1;
+    matriz.offset = 0;
+
+    int *p = malloc(n * n * sizeof(int));
+    matriz.data = p;
+
+    int size = matriz.n_rows * matriz.n_cols;
+    for(int i = 0; i < size; i++){
+        matriz.data[i] = 0;
+    }
+
+    int count = 0;
+    matriz.data[0] = 1;
+    for(int i = 0; i < size; i++){
+        count++;
+        if(count == n+1){
+            count = 0;
+           matriz.data[i+1] = 1;
+        }
+    }
+
+    return matriz;
+}
+
 void print_matrix(Matrix matrix){
     int size = matrix.n_rows * matrix.n_cols;
     int column = 0;

@@ -9,11 +9,22 @@ int main(){
     Matrix matriz1 = create_matrix(data, 4, 4);
     print_matrix(matriz1);
 
+    printf("\n");
+
     Matrix matriz2 = zeros_matrix(3, 4);
     print_matrix(matriz2);
 
-    Matrix matriz3 = full_matrix(3, 3, 1);
+    printf("\n");
+
+    Matrix matriz3 = full_matrix(3, 3, 8);
     print_matrix(matriz3);
+
+    printf("\n");
+
+    Matrix matriz4 = i_matrix(4);
+    print_matrix(matriz4);
+
+    printf("\n");
 
     return 0;
 }
