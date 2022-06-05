@@ -78,5 +78,9 @@ int main(){
 
     printf("\n");
 
+    Matrix matriz1_reshaped = reshape(matriz1, 2, 6);
+
+    print_matrix(matriz1_reshaped);
+
     return 0;
 }
