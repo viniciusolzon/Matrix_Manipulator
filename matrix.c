@@ -87,8 +87,8 @@ Matrix tile_matrix(Matrix matrix, int reps){
     int *p = malloc(sizeof(int) * matrix.n_rows * matrix.n_cols * reps);
     matriz.data = p;
 
-    matriz.n_rows = matrix.n_rows;
-    matriz.n_cols = matrix.n_cols * reps;
+    matriz.n_rows = matrix.n_rows * reps;
+    matriz.n_cols = matrix.n_cols;
     matriz.stride_rows = matriz.n_cols;
     matriz.stride_cols = 1;
     matriz.offset = 0;
@@ -110,16 +110,44 @@ Matrix tile_matrix(Matrix matrix, int reps){
     return matriz;
 }
 
+int get_element(Matrix matrix, int ri, int ci){
+    if(ri >= matrix.n_rows){
+        printf("Index out of range.");
+        return 0;
+    }
+    if(ci >= matrix.n_cols){
+        printf("Index out of range.");
+        return 0;
+    }else{
+        int element = matrix.data[((ri * matrix.n_cols) + ci)];
+
+        return element;
+    }
+}
+
+void put_element(Matrix matrix, int ri, int ci, int elem){
+    if(ri >= matrix.n_rows){
+        printf("Index out of range.");
+        return 0;
+    }
+    if(ci >= matrix.n_cols){
+        printf("Index out of range.");
+        return 0;
+    }else{
+        matrix.data[((ri * matrix.n_cols) + ci)] = elem;
+    }
+}
+
 void print_matrix(Matrix matrix){
     int size = matrix.n_rows * matrix.n_cols;
     int column = 0;
     for(int i = 0; i < size; i++){
         column++;
-        if(matrix.data[i] < 10){
-            printf("%d  ", matrix.data[i]);
+        if(matrix.data[i] >= 10 || matrix.data[i] < 0){
+            printf("%d ", matrix.data[i]);
         }
         else{
-            printf("%d ", matrix.data[i]);
+            printf("%d  ", matrix.data[i]);
         }
         if(column == matrix.stride_rows){
             column = 0;

@@ -6,8 +6,8 @@
 
 int main(){
 
-    int data[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-    Matrix matriz1 = create_matrix(data, 3, 3);
+    int data[12] = {1, 2, 3, 4, 5, 6, 7, 8, 9,10, 11, 12};
+    Matrix matriz1 = create_matrix(data, 4, 3);
     print_matrix(matriz1);
 
     printf("\n");
@@ -17,7 +17,7 @@ int main(){
 
     printf("\n");
 
-    Matrix matriz3 = full_matrix(3, 3, 8);
+    Matrix matriz3 = full_matrix(4, 3, 8);
     print_matrix(matriz3);
 
     printf("\n");
@@ -64,6 +64,18 @@ int main(){
 
     print_matrix(matriz_mul);
     
+    printf("\n");
+
+    printf("%d",get_element(matriz1, 3, 1));
+
+    printf("\n");
+
+    put_element(matriz1, 3, 1, 69);
+
+    printf("\n");
+
+    print_matrix(matriz1);
+
     printf("\n");
 
     return 0;
