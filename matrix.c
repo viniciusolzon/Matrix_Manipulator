@@ -156,6 +156,21 @@ void print_matrix(Matrix matrix){
     }
 }
 
+Matrix reshape(Matrix matrix, int new_n_rows, int new_n_cols){
+    int size = matrix.n_rows * matrix.n_cols;
+    if((new_n_rows * new_n_cols) > size){
+        printf("Reshape failed, you are trying to reshape the original matrix into a larger one.\n");
+    }
+    else{
+        matrix.n_rows = new_n_rows;
+        matrix.n_cols = new_n_cols;
+        matrix.stride_rows = matrix.n_cols;
+        matrix.stride_cols = 1;
+    }
+
+    return matrix;
+}
+
 int min(Matrix matrix){
     int size = matrix.n_rows * matrix.n_cols;
     int min_value = 99999;
