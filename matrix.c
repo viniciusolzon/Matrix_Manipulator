@@ -87,23 +87,28 @@ Matrix tile_matrix(Matrix matrix, int reps){
     int *p = malloc(sizeof(int) * matrix.n_rows * matrix.n_cols * reps);
     matriz.data = p;
 
-    matriz.n_rows = matrix.n_rows * reps;
-    matriz.n_cols = matrix.n_cols;
+    matriz.n_rows = matrix.n_rows;
+    matriz.n_cols = matrix.n_cols * reps;
     matriz.stride_rows = matriz.n_cols;
     matriz.stride_cols = 1;
     matriz.offset = 0;
 
     int size = matriz.n_rows * matriz.n_cols;
+
+    int condition = 0;
+    int aux = 0;
     int count = 0;
+
     for(int i = 0; i < size; i++){
-        if(i == size/2){
-            count = 0;
-            matriz.data[i] = matrix.data[count];
-            count++;
-        }
-        else{
-            matriz.data[i] = matrix.data[count];
-            count++;
+        matriz.data[i] = matrix.data[aux + count];
+        aux++;
+        condition++;
+        if(aux == matrix.stride_rows){
+            aux = 0;
+            if(condition == (matrix.stride_rows * reps)){
+                count += matrix.stride_rows;
+                condition = 0;
+            }
         }
     }
 
@@ -155,6 +160,33 @@ void print_matrix(Matrix matrix){
         }
     }
 }
+
+Matrix transpose(Matrix matrix){
+    Matrix matrix_t;
+    int tamanho = matrix.n_cols * matrix.n_rows;
+    int *p = malloc(sizeof(int) * tamanho);
+    matrix_t.data = p;
+    matrix_t.n_rows = matrix.n_cols;
+    matrix_t.n_cols = matrix.n_rows;
+    matrix_t.offset = matrix.offset;
+    matrix_t.stride_cols = 1;
+    matrix_t.stride_rows = matrix_t.n_cols;
+    int aux = 0;
+    int proximo = 0;
+    for(int i = 0; i < tamanho; i++){
+        matrix_t.data[aux] = matrix.data[i];  
+        if(aux >= (tamanho - matrix_t.n_cols)){
+            proximo++;  
+            aux = proximo;
+        }else{
+            aux += matrix_t.n_cols;
+        }
+         
+    }
+
+    return matrix_t;
+}
+
 
 Matrix reshape(Matrix matrix, int new_n_rows, int new_n_cols){
     int size = matrix.n_rows * matrix.n_cols;
@@ -297,32 +329,4 @@ Matrix mul(Matrix matrix_1, Matrix matrix_2){
     }
 
     return matriz;
-}
-
-Matrix transpose(Matrix matrix){
-    Matrix matrix_t;
-    int tamanho = matrix.n_cols * matrix.n_rows;
-    int *p = malloc(sizeof(int) * tamanho);
-    matrix_t.data = p;
-    matrix_t.n_rows = matrix.n_cols;
-    matrix_t.n_cols = matrix.n_rows;
-    matrix_t.offset = matrix.offset;
-    matrix_t.stride_cols = 1;
-    matrix_t.stride_rows = matrix_t.n_cols;
-    int aux = 0;
-    int proximo = 0;
-    for(int i = 0; i < tamanho; i++){
-        matrix_t.data[aux] = matrix.data[i];  
-        if(aux >= (tamanho - matrix_t.n_cols)){
-            proximo++;  
-            aux = proximo;
-        }else{
-            aux += matrix_t.n_cols;
-        }
-         
-    }
-   
-    
-
-    return matrix_t;
 }

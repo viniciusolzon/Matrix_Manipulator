@@ -27,7 +27,7 @@ int main(){
 
     printf("\n");
 
-    Matrix matriz5 = tile_matrix(matriz1, 2);
+    Matrix matriz5 = tile_matrix(matriz1, 3);
     print_matrix(matriz5);
 
     printf("\n");
@@ -81,12 +81,20 @@ int main(){
     Matrix matriz1_reshaped = reshape(matriz1, 2, 6);
 
     print_matrix(matriz1_reshaped);
-    printf("\n");
 
+    printf("\n");
 
     print_matrix(matriz1);
+
     printf("\n");
+    
     print_matrix(transpose(matriz1));
+
+    printf("\n");
+
+    // print_matrix(slice(matriz_mul, 0, 2, 1, 3));
+
+    printf("\n");
 
     return 0;
 }
