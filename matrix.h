@@ -29,7 +29,7 @@ void put_element(Matrix matrix, int ri, int ci, int elem);
 
 void print_matrix(Matrix matrix);
 
-// Matrix transpose(Matrix matrix);
+Matrix transpose(Matrix matrix);
 
 Matrix reshape(Matrix matrix, int new_n_rows, int new_n_cols);
 

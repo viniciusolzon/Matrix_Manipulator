@@ -6,7 +6,7 @@
 
 int main(){
 
-    int data[12] = {1, 2, 3, 4, 5, 6, 7, 8, 9,10, 11, 12};
+    int data[12] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
     Matrix matriz1 = create_matrix(data, 4, 3);
     print_matrix(matriz1);
 
@@ -81,6 +81,12 @@ int main(){
     Matrix matriz1_reshaped = reshape(matriz1, 2, 6);
 
     print_matrix(matriz1_reshaped);
+    printf("\n");
+
+
+    print_matrix(matriz1);
+    printf("\n");
+    print_matrix(transpose(matriz1));
 
     return 0;
 }

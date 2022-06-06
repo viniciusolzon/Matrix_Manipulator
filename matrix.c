@@ -298,3 +298,31 @@ Matrix mul(Matrix matrix_1, Matrix matrix_2){
 
     return matriz;
 }
+
+Matrix transpose(Matrix matrix){
+    Matrix matrix_t;
+    int tamanho = matrix.n_cols * matrix.n_rows;
+    int *p = malloc(sizeof(int) * tamanho);
+    matrix_t.data = p;
+    matrix_t.n_rows = matrix.n_cols;
+    matrix_t.n_cols = matrix.n_rows;
+    matrix_t.offset = matrix.offset;
+    matrix_t.stride_cols = 1;
+    matrix_t.stride_rows = matrix_t.n_cols;
+    int aux = 0;
+    int proximo = 0;
+    for(int i = 0; i < tamanho; i++){
+        matrix_t.data[aux] = matrix.data[i];  
+        if(aux >= (tamanho - matrix_t.n_cols)){
+            proximo++;  
+            aux = proximo;
+        }else{
+            aux += matrix_t.n_cols;
+        }
+         
+    }
+   
+    
+
+    return matrix_t;
+}
