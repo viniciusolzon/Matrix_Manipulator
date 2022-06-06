@@ -92,9 +92,5 @@ int main(){
 
     printf("\n");
 
-    // print_matrix(slice(matriz_mul, 0, 2, 1, 3));
-
-    printf("\n");
-
     return 0;
 }
