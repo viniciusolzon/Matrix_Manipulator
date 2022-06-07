@@ -15,92 +15,63 @@ Matrix create_matrix(int *data, int n_rows, int n_cols){
 }
 
 Matrix zeros_matrix(int n_rows, int n_cols){
-    Matrix matriz;
-    matriz.n_rows = n_rows;
-    matriz.n_cols = n_cols;
-    matriz.stride_rows = n_cols;
-    matriz.stride_cols = 1;
-    matriz.offset = 0;
 
     int *p = malloc(n_rows * n_cols * sizeof(int));
-    matriz.data = p;
 
-    int size = matriz.n_rows * matriz.n_cols;
+    int size = n_rows * n_cols;
     for(int i = 0; i < size; i++){
-        matriz.data[i] = 0;
+        p[i] = 0;
     }
 
-    return matriz;
+    return create_matrix(p, n_rows, n_cols);
 }
 
 Matrix full_matrix(int n_rows, int n_cols, int value){
-    Matrix matriz;
-    matriz.n_rows = n_rows;
-    matriz.n_cols = n_cols;
-    matriz.stride_rows = n_cols;
-    matriz.stride_cols = 1;
-    matriz.offset = 0;
 
     int *p = malloc(n_rows * n_cols * sizeof(int));
-    matriz.data = p;
 
-    int size = matriz.n_rows * matriz.n_cols;
+    int size = n_rows * n_cols;
     for(int i = 0; i < size; i++){
-        matriz.data[i] = value;
+        p[i] = value;
     }
 
-    return matriz;
+    return create_matrix(p , n_rows, n_cols);
 }
 
 Matrix i_matrix(int n){
-    Matrix matriz;
-    matriz.n_rows = n;
-    matriz.n_cols = n;
-    matriz.stride_rows = n;
-    matriz.stride_cols = 1;
-    matriz.offset = 0;
 
     int *p = malloc(n * n * sizeof(int));
-    matriz.data = p;
 
-    int size = matriz.n_rows * matriz.n_cols;
+    int size = n * n;
     for(int i = 0; i < size; i++){
-        matriz.data[i] = 0;
+        p[i] = 0;
     }
-
     int count = 0;
-    matriz.data[0] = 1;
+    p[0] = 1;
     for(int i = 0; i < size; i++){
         count++;
         if(count == n+1){
             count = 0;
-           matriz.data[i+1] = 1;
+           p[i+1] = 1;
         }
     }
 
-    return matriz;
+    return create_matrix(p, n, n);
 }
 
 Matrix tile_matrix(Matrix matrix, int reps){
-    Matrix matriz;
 
     int *p = malloc(sizeof(int) * matrix.n_rows * matrix.n_cols * reps);
-    matriz.data = p;
 
-    matriz.n_rows = matrix.n_rows;
-    matriz.n_cols = matrix.n_cols * reps;
-    matriz.stride_rows = matriz.n_cols;
-    matriz.stride_cols = 1;
-    matriz.offset = 0;
 
-    int size = matriz.n_rows * matriz.n_cols;
+    int size = matrix.n_rows * (matrix.n_cols * reps);
 
     int condition = 0;
     int aux = 0;
     int count = 0;
 
     for(int i = 0; i < size; i++){
-        matriz.data[i] = matrix.data[aux + count];
+        p[i] = matrix.data[aux + count];
         aux++;
         condition++;
         if(aux == matrix.stride_rows){
@@ -112,7 +83,7 @@ Matrix tile_matrix(Matrix matrix, int reps){
         }
     }
 
-    return matriz;
+    return create_matrix(p, matrix.n_rows, (matrix.n_cols * reps));
 }
 
 int get_element(Matrix matrix, int ri, int ci){
@@ -162,31 +133,25 @@ void print_matrix(Matrix matrix){
 }
 
 Matrix transpose(Matrix matrix){
-    Matrix matrix_t;
-    int tamanho = matrix.n_cols * matrix.n_rows;
-    int *p = malloc(sizeof(int) * tamanho);
-    matrix_t.data = p;
-    matrix_t.n_rows = matrix.n_cols;
-    matrix_t.n_cols = matrix.n_rows;
-    matrix_t.offset = matrix.offset;
-    matrix_t.stride_cols = 1;
-    matrix_t.stride_rows = matrix_t.n_cols;
+
+    int size = matrix.n_cols * matrix.n_rows;
+    int *p = malloc(sizeof(int) * size);
+
     int aux = 0;
     int proximo = 0;
-    for(int i = 0; i < tamanho; i++){
-        matrix_t.data[aux] = matrix.data[i];  
-        if(aux >= (tamanho - matrix_t.n_cols)){
+    for(int i = 0; i < size; i++){
+        p[aux] = matrix.data[i];  
+        if(aux >= (size - matrix.n_rows)){
             proximo++;  
             aux = proximo;
         }else{
-            aux += matrix_t.n_cols;
+            aux += matrix.n_rows;
         }
          
     }
 
-    return matrix_t;
+    return create_matrix(p, matrix.n_cols, matrix.n_rows);
 }
-
 
 Matrix reshape(Matrix matrix, int new_n_rows, int new_n_cols){
     int size = matrix.n_rows * matrix.n_cols;
@@ -252,81 +217,49 @@ int argmax(Matrix matrix){
 }
 
 Matrix add(Matrix matrix_1, Matrix matrix_2){
-    Matrix matriz;
 
     int *p = malloc(sizeof(int) * matrix_1.n_rows * matrix_1.n_cols);
-    matriz.data = p;
 
-    matriz.n_rows = matrix_1.n_rows;
-    matriz.n_cols = matrix_1.n_cols;
-    matriz.stride_rows = matrix_1.n_cols;
-    matriz.stride_cols = 1;
-    matriz.offset = 0;
-    
     int size = matrix_1.n_rows * matrix_1.n_cols;
     for(int i = 0; i < size; i++){
-        matriz.data[i] = matrix_1.data[i] + matrix_2.data[i];
+        p[i] = matrix_1.data[i] + matrix_2.data[i];
     }
 
-    return matriz;
+    return create_matrix(p, matrix_1.n_rows, matrix_1.n_cols);
 }
 
 Matrix sub(Matrix matrix_1, Matrix matrix_2){
-    Matrix matriz;
 
     int *p = malloc(sizeof(int) * matrix_1.n_rows * matrix_1.n_cols);
-    matriz.data = p;
-
-    matriz.n_rows = matrix_1.n_rows;
-    matriz.n_cols = matrix_1.n_cols;
-    matriz.stride_rows = matrix_1.n_cols;
-    matriz.stride_cols = 1;
-    matriz.offset = 0;
     
     int size = matrix_1.n_rows * matrix_1.n_cols;
     for(int i = 0; i < size; i++){
-        matriz.data[i] = matrix_1.data[i] - matrix_2.data[i];
+        p[i] = matrix_1.data[i] - matrix_2.data[i];
     }
 
-    return matriz;
+    return create_matrix(p, matrix_1.n_rows, matrix_1.n_cols);
 }
 
 Matrix division(Matrix matrix_1, Matrix matrix_2){
-    Matrix matriz;
 
     int *p = malloc(sizeof(int) * matrix_1.n_rows * matrix_1.n_cols);
-    matriz.data = p;
 
-    matriz.n_rows = matrix_1.n_rows;
-    matriz.n_cols = matrix_1.n_cols;
-    matriz.stride_rows = matrix_1.n_cols;
-    matriz.stride_cols = 1;
-    matriz.offset = 0;
-    
     int size = matrix_1.n_rows * matrix_1.n_cols;
     for(int i = 0; i < size; i++){
-        matriz.data[i] = matrix_1.data[i] / matrix_2.data[i];
+        p[i] = matrix_1.data[i] / matrix_2.data[i];
     }
 
-    return matriz;
+    return create_matrix(p, matrix_1.n_rows, matrix_1.n_cols);
 }
 
 Matrix mul(Matrix matrix_1, Matrix matrix_2){
-    Matrix matriz;
 
     int *p = malloc(sizeof(int) * matrix_1.n_rows * matrix_1.n_cols);
-    matriz.data = p;
 
-    matriz.n_rows = matrix_1.n_rows;
-    matriz.n_cols = matrix_1.n_cols;
-    matriz.stride_rows = matrix_1.n_cols;
-    matriz.stride_cols = 1;
-    matriz.offset = 0;
-    
     int size = matrix_1.n_rows * matrix_1.n_cols;
     for(int i = 0; i < size; i++){
-        matriz.data[i] = matrix_1.data[i] * matrix_2.data[i];
+        p[i] = matrix_1.data[i] * matrix_2.data[i];
     }
 
-    return matriz;
+    return create_matrix(p, matrix_1.n_rows, matrix_1.n_cols);
 }

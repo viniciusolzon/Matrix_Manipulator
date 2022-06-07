@@ -16,7 +16,7 @@ int main(){
 
     printf("\n");
 
-    Matrix matriz3 = full_matrix(4, 3, 8);
+    Matrix matriz3 = full_matrix(4, 3, 7);
     print_matrix(matriz3);
 
     printf("\n");
@@ -25,7 +25,7 @@ int main(){
 
     printf("\n");
 
-    print_matrix(tile_matrix(matriz1, 3));
+    print_matrix(tile_matrix(matriz1, 4));
 
     printf("\n");
 
