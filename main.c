@@ -12,8 +12,7 @@ int main(){
 
     printf("\n");
 
-    Matrix matriz2 = zeros_matrix(3, 4);
-    print_matrix(matriz2);
+    print_matrix(zeros_matrix(3, 4));
 
     printf("\n");
 
@@ -22,13 +21,11 @@ int main(){
 
     printf("\n");
 
-    Matrix matriz4 = i_matrix(5);
-    print_matrix(matriz4);
+    print_matrix(i_matrix(5));
 
     printf("\n");
 
-    Matrix matriz5 = tile_matrix(matriz1, 2);
-    print_matrix(matriz5);
+    print_matrix(tile_matrix(matriz1, 3));
 
     printf("\n");
 
@@ -42,27 +39,19 @@ int main(){
    
     printf("\n");
 
-    Matrix matriz_add = add(matriz1, matriz3);
+    print_matrix(add(matriz1, matriz3));
 
-    print_matrix(matriz_add);
+    printf("\n");
+
+    print_matrix(sub(matriz1, matriz3));
+
+    printf("\n");
+
+    print_matrix(division(matriz1, matriz3));
     
     printf("\n");
 
-    Matrix matriz_sub = sub(matriz1, matriz3);
-
-    print_matrix(matriz_sub);
-    
-    printf("\n");
-
-    Matrix matriz_divison = division(matriz1, matriz3);
-
-    print_matrix(matriz_divison);
-    
-    printf("\n");
-
-    Matrix matriz_mul = mul(matriz1, matriz3);
-
-    print_matrix(matriz_mul);
+    print_matrix(mul(matriz1, matriz3));
     
     printf("\n");
 
@@ -78,15 +67,13 @@ int main(){
 
     printf("\n");
 
-    Matrix matriz1_reshaped = reshape(matriz1, 2, 6);
+    print_matrix(reshape(matriz1, 2, 6));
 
-    print_matrix(matriz1_reshaped);
     printf("\n");
 
-
-    print_matrix(matriz1);
-    printf("\n");
     print_matrix(transpose(matriz1));
+
+    printf("\n");
 
     return 0;
 }
