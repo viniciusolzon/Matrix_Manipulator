@@ -73,7 +73,12 @@ int main(){
 
     print_matrix(transpose(matriz1));
 
+    printf("\n"); 
+    int matriznova[9] = {1,2,3,4,5,6,7,8,9};
+    Matrix matrizcorte = create_matrix(matriznova, 3, 3);
+    print_matrix(matrizcorte);
     printf("\n");
 
+    print_matrix(slice(matrizcorte, 1, 3, 1, 3));
     return 0;
 }
