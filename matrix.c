@@ -168,6 +168,33 @@ Matrix reshape(Matrix matrix, int new_n_rows, int new_n_cols){
     return matrix;
 }
 
+Matrix slice(Matrix a_matrix, int rs, int re, int cs, int ce){
+    a_matrix.n_rows = (re - rs);
+    a_matrix.n_cols = (ce - cs);
+    a_matrix.data[a_matrix.n_cols * a_matrix.n_rows];
+    a_matrix.offset = (a_matrix.stride_rows * rs)+ cs;
+
+    int stop = a_matrix.offset + ((a_matrix.n_rows - 1) * a_matrix.stride_rows) + (a_matrix.n_cols - 1);
+
+    int skip = a_matrix.stride_rows - a_matrix.n_cols;
+
+    int count = 1;
+    int index = 0;
+    for(int i = a_matrix.offset; i < stop + 1; i++){
+        a_matrix.data[index] = a_matrix.data[i];
+        if(count == a_matrix.n_cols){
+            i += skip;
+            count = 0;
+        }
+        count++;
+        index++;
+    }
+
+    a_matrix.stride_rows = a_matrix.n_cols;
+
+    return a_matrix;
+}
+
 int min(Matrix matrix){
     int size = matrix.n_rows * matrix.n_cols;
     int min_value = 99999;
@@ -262,63 +289,4 @@ Matrix mul(Matrix matrix_1, Matrix matrix_2){
     }
 
     return create_matrix(p, matrix_1.n_rows, matrix_1.n_cols);
-}
-
-Matrix slice(Matrix a_matrix, int rs, int re, int cs, int ce){
-    int *p = malloc(sizeof(int) * 4);
-    Matrix matriz_slice;
-    matriz_slice.data = p;
-    matriz_slice.n_cols = 2;
-    matriz_slice.n_rows = 2;
-    matriz_slice.offset = 0;
-    matriz_slice.stride_cols = 1;
-    matriz_slice.stride_rows = matriz_slice.n_cols;
-    int linha_c = 0;
-    int linha_f = 0;
-    int col_c = 0;
-    int col_f = 0;
-    if(rs == 0){
-        linha_c = 0;
-    }else{
-        for(int i = 0; i < rs; i++){
-            linha_c+=a_matrix.n_cols;
-        }
-    }
-    if(re == 0){
-        linha_f = 0;
-    }else{
-        for(int i = 0; i < re-1; i++){
-            linha_f+=a_matrix.n_cols;
-        }
-    }
-    if(cs == 0){
-        col_c = 0;
-    }else{
-        for(int i = 0; i < cs; i++){
-            col_c += 1;
-        }
-    }
-    if(ce == 0){
-        col_f = 0;
-    }else{
-        for(int i = 0; i < ce-1; i++){
-            col_f+=1;
-        }
-    }
-
- 
-  
-    int soma = linha_c + col_c;
-    int soma2 = linha_c + col_f;
-    int soma3 = linha_f + col_c;
-    int soma4 = linha_f + col_f;
-
-    
-
-    matriz_slice.data[0] = a_matrix.data[soma];
-    matriz_slice.data[1] = a_matrix.data[soma2];
-    matriz_slice.data[2] = a_matrix.data[soma3];
-    matriz_slice.data[3] = a_matrix.data[soma4];
-
-    return matriz_slice;
 }
