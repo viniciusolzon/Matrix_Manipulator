@@ -88,11 +88,11 @@ Matrix tile_matrix(Matrix matrix, int reps){
 
 int get_element(Matrix matrix, int ri, int ci){
     if(ri >= matrix.n_rows){
-        printf("Index out of range.");
+        printf("Index out of range.\n");
         return 0;
     }
     if(ci >= matrix.n_cols){
-        printf("Index out of range.");
+        printf("Index out of range.\n");
         return 0;
     }else{
         int element = matrix.data[((ri * matrix.n_cols) + ci)];
@@ -103,11 +103,11 @@ int get_element(Matrix matrix, int ri, int ci){
 
 void put_element(Matrix matrix, int ri, int ci, int elem){
     if(ri >= matrix.n_rows){
-        printf("Index out of range.");
+        printf("Index out of range.\n");
         return 0;
     }
     if(ci >= matrix.n_cols){
-        printf("Index out of range.");
+        printf("Index out of range.\n");
         return 0;
     }else{
         matrix.data[((ri * matrix.n_cols) + ci)] = elem;
