@@ -1,5 +1,5 @@
-// Vinicius Freitas     20210026803
-// Natanael Neto        20190038391
+// Vinicius Freitas    20210026803
+// Natanael Neto       20190038391
 #include "matrix.h"
 
 Matrix create_matrix(int *data, int n_rows, int n_cols){

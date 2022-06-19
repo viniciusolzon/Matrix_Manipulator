@@ -1,8 +1,7 @@
-// Vinicius Freitas     20210026803
-// Natanael Neto        20190038391
+// Vinicius Freitas    20210026803
+// Natanael Neto       20190038391
 #ifndef MATRIX_H
 #define MATRIX_H
-
 
 typedef struct {
     int *data;
@@ -47,6 +46,5 @@ Matrix add(Matrix matrix_1, Matrix matrix_2);
 Matrix sub(Matrix matrix_1, Matrix matrix_2);
 Matrix division(Matrix matrix_1, Matrix matrix_2);
 Matrix mul(Matrix matrix_1, Matrix matrix_2);
-
 
 #endif
