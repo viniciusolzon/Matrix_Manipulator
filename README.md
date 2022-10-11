@@ -1,4 +1,4 @@
-# Numpy-like-Structure
+# Numpy_Structure
 Projeto final da disciplina de Programação Estruturada.
 - O objetivo desse projeto é criar uma implementação para representação e manipulação de matrizes inspirada no NumPy.
 ## Integrantes
